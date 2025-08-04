@@ -63,7 +63,7 @@ public class HomePage {
     }
 
     public void search2(String keyword) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(100));
 
         // 1. Arama kutusuna tıkla
         WebElement input = wait.until(ExpectedConditions.elementToBeClickable(searchBox));

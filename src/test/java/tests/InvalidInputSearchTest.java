@@ -21,37 +21,6 @@ public class InvalidInputSearchTest extends BaseTest {
         homePage = new HomePage(driver);
     }
 
-//    @Test(description = "Boş arama sorgusu test edilir - hata mesajı veya ana sayfa")
-//    public void testEmptySearch() {
-//        homePage.open();
-//      //  homePage.search("");
-//        // Burada, boş arama sonrası beklenen durum doğrulanır:
-//        // Örneğin, sayfa başlığı değişmemeli veya uyarı mesajı görünmeli
-//      //  boolean isPageTitleUnchanged = driver.getTitle().equalsIgnoreCase("Hepsiburada");
-//      //  Assert.assertTrue(isPageTitleUnchanged, "Boş aramada sayfa başlığı değişmemeli.");
-//        String beforeUrl = homePage.currentUrl();
-//        homePage.searchWithEmptyText();
-//        String afterUrl = driver.getCurrentUrl();
-//
-//        Assert.assertEquals(afterUrl, beforeUrl, "Boş arama sonrası sayfa değişmemeli.");
-//
-//
-//        // Alternatif: belirli hata mesajı varsa kontrol et
-//       // String pageSource = driver.getPageSource();
-//       // Assert.assertTrue(pageSource.contains("arama yapmalısınız") ||
-//             //   pageSource.contains("lütfen arama yapın") ||
-//               // isPageTitleUnchanged, "Boş arama sonrası uygun mesaj ya da davranış olmalı.");
-//    }
-//
-//    @Test(description = "Boş arama sorgusu test edilir - hata mesajı veya ana sayfa")
-//    public void testEmptySearch() {
-//        //homePage.open();
-//        String beforeUrl = homePage.currentUrl();
-//        homePage.searchWithEmptyText();  // boş gönder
-//        String afterUrl = driver.getCurrentUrl();
-//
-//        Assert.assertEquals(afterUrl, beforeUrl, "Boş arama sonrası sayfa değişmemeli.");
-//    }
 
     @Test(description = "Anlamsız, çok uzun bir karakter dizisiyle yapılan aramada sistemin doğru şekilde 'sonuç bulunamadı' mesajı göstermesi beklenir")
     public void testExcessivelyLongSearchWithVerbigeration() {
