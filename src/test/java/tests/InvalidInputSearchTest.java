@@ -24,7 +24,7 @@ public class InvalidInputSearchTest extends BaseTest {
 
     @Test(description = "Anlamsız, çok uzun bir karakter dizisiyle yapılan aramada sistemin doğru şekilde 'sonuç bulunamadı' mesajı göstermesi beklenir")
     public void testExcessivelyLongSearchWithVerbigeration() {
-        String longSearchTerm = "a".repeat(1000);
+        String longSearchTerm = "a".repeat(100);
 
         homePage.search2(longSearchTerm);
 

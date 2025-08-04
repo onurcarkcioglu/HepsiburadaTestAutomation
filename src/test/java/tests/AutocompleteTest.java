@@ -19,7 +19,7 @@ public class AutocompleteTest extends BaseTest {
     @Test(description = "Popüler ürün önerilerinin otomatik tamamlama sırasında görünürlük testi")
     public void testPopularSuggestionsVisible() {
         HomePage homePage = new HomePage(driver);
-        homePage.enterSearchTerm("samsung");
+        homePage.enterSearchTerm("samsun");
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 

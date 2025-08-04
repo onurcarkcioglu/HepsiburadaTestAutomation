@@ -1,6 +1,7 @@
 package tests;
 
 import base.BaseTest;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -18,6 +19,7 @@ import java.time.Duration;
 public class ValidSearchTest extends BaseTest {
 
     private HomePage homePage;
+    private final By searchKey = By.cssSelector("h1[data-test-id='header-h1']");
 
     @BeforeMethod
     @Override
@@ -28,8 +30,6 @@ public class ValidSearchTest extends BaseTest {
 
     @Step("Arama işlemi yapılır: {keyword}")
     private SearchResultPage performValidSearch(String keyword) {
-        HomePage homePage = new HomePage(driver);
-        homePage.open();
         homePage.search2(keyword);
         return new SearchResultPage(driver);
     }
@@ -50,7 +50,6 @@ public class ValidSearchTest extends BaseTest {
         Assert.assertTrue(homePage.hasProducts(), "Arama sonuçları görüntülenmedi!");
     }
 
-    //Bunları yapmalı mıyız?
     @Test(description = "Filtre paneli görünür olmalı")
     @Story("Filtre paneli görünürlüğü")
     @Severity(SeverityLevel.MINOR)
@@ -59,14 +58,13 @@ public class ValidSearchTest extends BaseTest {
         Assert.assertTrue(resultPage.isFilterPanelVisible(), "Filtre paneli görünmüyor!");
     }
 
-    //Bunları yapmalı mıyız?
     @Test(description = "Sayfa içeriği arama terimini içermeli")
     @Story("Sayfa içeriği kontrolü")
     @Severity(SeverityLevel.NORMAL)
     public void testSearchTermInPageSource() {
         String searchTerm = "laptop";
         performValidSearch(searchTerm);
-        String pageSource = driver.getPageSource().toLowerCase();
-        Assert.assertTrue(pageSource.contains(searchTerm), "Sayfa içeriğinde arama terimi bulunamadı!");
+        String searchTitle = driver.findElement(searchKey).getText();
+        Assert.assertTrue(searchTitle.contains(searchTerm), "Sayfa içeriğinde arama terimi bulunamadı!");
     }
 }

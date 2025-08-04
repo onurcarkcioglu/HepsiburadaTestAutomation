@@ -26,27 +26,26 @@ public class InvalidSearchTest extends BaseTest {
 
     @Test(description = "Geçersiz arama sonucu 'ürün bulunamadı' mesajı kontrol edilir")
     public void testInvalidProductSearch() {
-        HomePage homePage = new HomePage(driver);
-
         String invalidSearchTerm = "asdfghqwertyu123456";
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
         homePage.search2(invalidSearchTerm);
+
+        wait.until(ExpectedConditions.urlContains(invalidSearchTerm));
 
         Assert.assertTrue(homePage.isNoResultSearch(), "Geçersiz arama sonrası 'ürün bulunamadı' mesajı görünmeli.");
     }
 
     @Test(description = "Boş arama sorgusu gönderildiğinde hiçbir aksiyon alınmamalı")
     public void testEmptySearchDoesNothing() {
-        // 1. Başlangıç URL ve title'ı al
+        // 1. Başlangıç URL
         String initialUrl = driver.getCurrentUrl();
 
-        // 2. Boş arama gönder
-        homePage.search2("     ");  // sadece boşluk
+        homePage.search2("     ");
 
-        // 3. Kısa bir bekleme (herhangi bir yönlendirme oldu mu?)
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
         wait.until(ExpectedConditions.urlToBe(initialUrl)); // sayfa aynı kalmalı
 
-        // 4. Kontroller
         String finalUrl = driver.getCurrentUrl();
 
         Assert.assertEquals(finalUrl, initialUrl, "Boş arama yönlendirme yapmamalı.");
